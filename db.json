@@ -1,0 +1,56 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "name": "John Doe",
+      "age": 25,
+      "email": "john.doe@example.com"
+    },
+    {
+      "id": 2,
+      "name": "Jane Smith",
+      "age": 30,
+      "email": "jane.smith@example.com"
+    },
+    {
+      "id": 3,
+      "name": "Alice Johnson",
+      "age": 35,
+      "email": "alice.johnson@example.com"
+    },
+    {
+      "id": 4,
+      "name": "Bob Brown",
+      "age": 40,
+      "email": "bob.brown@example.com"
+    },
+    {
+      "id": 5,
+      "name": "Jane Doe",
+      "age": 13,
+      "email": "jane.doe@example.com"
+    }
+  ],
+  "users_columns": [
+    {
+      "field": "id",
+      "headerName": "ID",
+      "width": 90
+    },
+    {
+      "field": "name",
+      "headerName": "Name",
+      "width": 150
+    },
+    {
+      "field": "age",
+      "headerName": "Age",
+      "width": 110
+    },
+    {
+      "field": "email",
+      "headerName": "Email",
+      "width": 200
+    }
+  ]
+}
