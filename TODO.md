@@ -5,3 +5,4 @@
 - [ ] add pagination
 - [ ] add more data
 - [ ] add tanstack react query to cache and invalidate
+- [ ] have a look at https://codesandbox.io/p/sandbox/github/prettyblueberry/mui-datagrid-full-edit-sample1
