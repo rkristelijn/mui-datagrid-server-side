@@ -1,5 +1,26 @@
-import { Dashboard } from '@/features/dashboard/Dashboard';
+import React from 'react';
+import { List, ListItem, Link } from '@mui/material';
 
-const Home = () => <Dashboard />;
+const links = [
+  { text: 'Home', href: '/' },
+  { text: 'About', href: '/about' },
+  { text: 'Client Side', href: '/client-side' },
+  { text: 'Server Side', href: '/server-side' },
+  { text: 'Server Side Data', href: '/server-side-data' },
+];
 
-export default Home;
+const Page = () => {
+  return (
+    <List>
+      {links.map((link, index) => (
+        <ListItem key={index}>
+          <Link href={link.href} underline="hover">
+            {link.text}
+          </Link>
+        </ListItem>
+      ))}
+    </List>
+  );
+};
+
+export default Page;
