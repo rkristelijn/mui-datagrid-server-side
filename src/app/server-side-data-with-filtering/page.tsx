@@ -1,20 +1,21 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { DataGrid, GridSortModel } from '@mui/x-data-grid';
+import { DataGrid, GridFilterModel, GridSortModel } from '@mui/x-data-grid';
 import { Box, Typography } from '@mui/material';
 
 export default function Page() {
-  const [users, setUsers] = useState([]);
   const [columns, setColumns] = useState([]);
   const [error, setError] = useState<string | null>(null);
-  const [sortModel, setSortModel] = useState<GridSortModel>([]);
+  const [filterModel, setFilterModel] = useState<GridFilterModel>({ items: [] });
   const [page, setPage] = useState(0);
   const [pageSize, setPageSize] = useState(10);
   const [rowCount, setRowCount] = useState(0);
+  const [sortModel, setSortModel] = useState<GridSortModel>([]);
+  const [users, setUsers] = useState([]);
 
-  const fetchData = async (sortModel?: GridSortModel, page?: number, pageSize?: number) => {
-    console.log("fetchData", sortModel, page, pageSize);
+  const fetchData = async (sortModel?: GridSortModel, page?: number, pageSize?: number, filterModel?: GridFilterModel) => {
+    console.log('fetchData', sortModel, page, pageSize);
     try {
       const params = new URLSearchParams();
       if (sortModel && sortModel.length > 0) {
@@ -28,6 +29,13 @@ export default function Page() {
       }
       if (pageSize !== undefined) {
         params.append('_limit', pageSize.toString());
+      }
+      if (filterModel && filterModel.items.length > 0) {
+        // for now assume it is only 'contains' filter
+        console.log("filterModel", filterModel);
+        filterModel.items.forEach((filter) => {
+          params.append(filter.field, filter.value);
+        });
       }
 
       const [usersResponse, columnsResponse] = await Promise.all([
@@ -52,12 +60,12 @@ export default function Page() {
   };
 
   useEffect(() => {
-    fetchData(sortModel, page, pageSize);
+    fetchData(sortModel, page, pageSize, filterModel);
   }, [page, pageSize, sortModel]);
 
   const handleSortModelChange = (newSortModel: GridSortModel) => {
     setSortModel(newSortModel);
-    fetchData(newSortModel, page, pageSize);
+    fetchData(newSortModel, page, pageSize, filterModel);
   };
 
   const handlePageChange = (newPage: number) => {
@@ -68,6 +76,12 @@ export default function Page() {
     setPageSize(newPageSize);
   };
 
+  const handleFilterModelChange = (newFilterModel: GridFilterModel) => {
+    console.log("handleFilterModelChange", newFilterModel);
+    setFilterModel(newFilterModel);
+    fetchData(sortModel, page, pageSize, newFilterModel);
+   };
+
   if (error) {
     return <Typography color="error">{error}</Typography>;
   }
@@ -75,20 +89,23 @@ export default function Page() {
   return (
     <Box sx={{ height: '100%', width: '100%' }}>
       <DataGrid
-        rows={users}
         columns={columns}
-        sortModel={sortModel}
-        onSortModelChange={handleSortModelChange}
-        pagination
-        pageSizeOptions={[10, 25, 50]}
-        paginationModel={{ page, pageSize }}
-        rowCount={rowCount}
-        paginationMode="server"
+        onFilterModelChange={handleFilterModelChange}
         onPaginationModelChange={(model) => {
-          console.log("onPaginationModelChange", model);
+          console.log('onPaginationModelChange', model);
           handlePageChange(model.page);
           handlePageSizeChange(model.pageSize);
         }}
+        onSortModelChange={handleSortModelChange}
+        pageSizeOptions={[10, 25, 50]}
+        pagination
+        paginationMode="server"
+        sortingMode='server'
+        filterMode='server'
+        paginationModel={{ page, pageSize }}
+        rowCount={rowCount}
+        rows={users}
+        sortModel={sortModel}
       />
     </Box>
   );
