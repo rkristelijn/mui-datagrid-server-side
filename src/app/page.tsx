@@ -7,6 +7,7 @@ const links = [
   { text: 'Client Side', href: '/client-side' },
   { text: 'Server Side', href: '/server-side' },
   { text: 'Server Side Data', href: '/server-side-data' },
+  { text: 'Server Side Data with sorting', href: '/server-side-data-with-sorting' },
 ];
 
 const Page = () => {

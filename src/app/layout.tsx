@@ -5,6 +5,7 @@ import CssBaseline from '@mui/material/CssBaseline';
 import theme from '@/theme';
 import InitColorSchemeScript from '@mui/material/InitColorSchemeScript';
 import ModeSwitch from '@/components/ModeSwitch';
+import { Link } from '@mui/material';
 
 const RootLayout = (props: { children: React.ReactNode }) => {
   return (
@@ -15,6 +16,7 @@ const RootLayout = (props: { children: React.ReactNode }) => {
           <ThemeProvider theme={theme}>
             {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
             <CssBaseline />
+            <Link href="/" underline="hover">Home</Link>
             <ModeSwitch />
             {props.children}
           </ThemeProvider>

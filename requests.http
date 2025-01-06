@@ -1,0 +1,36 @@
+@baseUrl = http://localhost:3001
+@randomId = {{$randomInt 1 1000}}
+@randomName = {{$randomString 10}}
+@randomEmail = {{$randomString 5}}@example.com
+
+### Read Users
+GET {{baseUrl}}/users
+
+### Create User
+POST {{baseUrl}}/users HTTP/1.1
+Content-Type: application/json
+
+{
+  "name": "Peter Selie",
+  "age": 30,
+  "email": "peter@selie.com"
+}
+
+### Update User
+# Replace `1` with the desired user ID
+PUT {{baseUrl}}/users/1
+Content-Type: application/json
+
+{
+  "name": "Updated {{randomName}}",
+  "email": "updated_{{randomEmail}}"
+}
+
+### Delete User
+# Replace `1` with the desired user ID
+DELETE {{baseUrl}}/users/1
+
+
+### Query with sort
+GET {{baseUrl}}/users?_sort=-name
+

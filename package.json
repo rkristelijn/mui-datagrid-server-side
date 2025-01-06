@@ -8,9 +8,8 @@
     "lint": "next lint",
     "post-update": "echo \"codesandbox preview only, need an update\" && pnpm update --latest",
     "start:prod": "next start",
-    "server": "node node_modules/json-server/lib/bin.js db.json --port 3001 --middleware src/utils/logger.mjs",
-    "start": "concurrently -n \"SERVER,APP\" -c \"bgBlue.bold,bgGreen.bold\" \"npm run server\" \"npm run dev\"",
-    "postinstall": "cd node_modules && git clone -b feature/add-middleware https://github.com/rkristelijn/json-server.git"
+    "server": "json-server db.json --port 3001 --middlewares src/utils/logger.cjs",
+    "start": "concurrently -n \"SERVER,APP\" -c \"bgBlue.bold,bgGreen.bold\" \"npm run server\" \"npm run dev\""
   },
   "dependencies": {
     "@emotion/cache": "latest",
@@ -21,6 +20,7 @@
     "@mui/material-nextjs": "latest",
     "@mui/x-data-grid": "^7.23.5",
     "@mui/x-data-grid-pro": "^7.23.5",
+    "json-server": "^0.17.4",
     "next": "^15.0.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"

@@ -1,6 +1,6 @@
-import chalk from 'chalk';
+const chalk = require('chalk');
 
-export default (req, res, next) => {
+module.exports = (req, res, next) => {
   const currentDate = new Date().toISOString();
   console.log(chalk.blue(`[${currentDate}]`), chalk.green(req.method), chalk.yellow(req.url));
 
