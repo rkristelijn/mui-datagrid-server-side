@@ -32,5 +32,5 @@ DELETE {{baseUrl}}/users/1
 
 
 ### Query with sort
-GET {{baseUrl}}/users?_sort=-name
+GET {{baseUrl}}/users?_sort=id&_order=desc&_page=1&_limit=10
 

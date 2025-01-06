@@ -6,3 +6,4 @@
 - [ ] add more data
 - [ ] add tanstack react query to cache and invalidate
 - [ ] have a look at https://codesandbox.io/p/sandbox/github/prettyblueberry/mui-datagrid-full-edit-sample1
+- [ ] see https://medium.com/@alamdar.hussain0007/implementing-react-data-grid-component-with-mui-x-in-your-next-js-14-project-c47806553d25

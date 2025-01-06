@@ -8,6 +8,7 @@ const links = [
   { text: 'Server Side', href: '/server-side' },
   { text: 'Server Side Data', href: '/server-side-data' },
   { text: 'Server Side Data with sorting', href: '/server-side-data-with-sorting' },
+  { text: 'Server Side Data with filtering', href: '/server-side-data-with-filtering' },
 ];
 
 const Page = () => {
